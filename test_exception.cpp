@@ -35,8 +35,6 @@ protected:
     CommandMove *cmd_move = new CommandMove;
     CommandRotate *cmd_rotate = new CommandRotate;
     CommandLoger *cmd_loger = new CommandLoger;
-    std::exception ex;
-    ExceptionHandler* handler = new ExceptionHandler(0, ex);
 
     cmd.add(cmd_move);
     cmd.add(cmd_rotate);
@@ -58,7 +56,6 @@ protected:
     CommandQueue cmd;
     CommandMove *cmd_move = new CommandMove;
     CommandRotate *cmd_rotate = new CommandRotate;
-    CommandLoger *cmd_loger = new CommandLoger;
     std::exception ex;
     ExceptionHandler* handler = new ExceptionHandler(0, ex);
 
@@ -70,7 +67,7 @@ protected:
         try {
             cmd.front()->execute();
         } catch( std::exception ex) {
-            cmd_loger->execute(cmd.front());
+            handler->executeWriteAfter(&cmd, ex);
         }
         cmd.del();
     }
