@@ -98,10 +98,29 @@ protected:
     }
     std::cout << std::endl;
 }
-// 
+// Реализовать обработчик исключения, который ставит в очередь Команду - повторитель команды, выбросившей исключение.
   void test4(void)
 {
-    CPPUNIT_ASSERT(0 < 1);
+    CommandQueue cmd;
+    CommandMove *cmd_move = new CommandMove;
+    CommandRotate *cmd_rotate = new CommandRotate;
+    std::exception ex;
+    ExceptionHandler* handler = new ExceptionHandler(0, ex);
+
+    cmd.add(cmd_move);
+    cmd.add(cmd_rotate);
+
+    std::cout << std::endl;
+    while(!cmd.isEmpty())
+    {
+        try {
+            cmd.front()->execute();
+        } catch( std::exception ex) {
+            handler->executeRepeatOnce(&cmd, cmd.front(), ex);
+        }
+        cmd.del();
+    }
+    std::cout << std::endl;
 }
 };
 
