@@ -44,10 +44,8 @@ void ExceptionHandler::executeWrite(CommandQueue* cmd, ICommand* com, std::excep
     cmd->del();
 }
 
-void ExceptionHandler::executeLogerAfter(CommandQueue* cmd, ICommand* com, std::exception ex)
+void ExceptionHandler::executeLogerAfter(CommandQueue* cmd, std::exception ex)
 {
-    //std::cout << "Write execute of ExceptionHandler" << ex.what() << std::endl;
     CommandLoger *cmd_loger = new CommandLoger;
     cmd->add(com);
-    cmd->del();
 }
