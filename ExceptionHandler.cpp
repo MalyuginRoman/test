@@ -47,5 +47,5 @@ void ExceptionHandler::executeWrite(CommandQueue* cmd, ICommand* com, std::excep
 void ExceptionHandler::executeLogerAfter(CommandQueue* cmd, std::exception ex)
 {
     CommandLoger *cmd_loger = new CommandLoger;
-    cmd->add(com);
+    cmd->add(cmd_loger);
 }
