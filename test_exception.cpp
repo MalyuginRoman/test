@@ -67,7 +67,7 @@ protected:
         try {
             cmd.front()->execute();
         } catch( std::exception ex) {
-            handler->executeWriteAfter(&cmd, ex);
+            handler->executeLogerAfter(&cmd, ex);
         }
         cmd.del();
     }
