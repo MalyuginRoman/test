@@ -7,6 +7,7 @@ class ExceptionHandler
 {
 public:
     ExceptionHandler(ICommand* cmd, std::exception ex);
+    ~ExceptionHandler();
 
     ICommand* cmd() const;
     std::exception ex() const;
