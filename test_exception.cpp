@@ -39,6 +39,7 @@ protected:
     cmd.add(cmd_move);
     cmd.add(cmd_rotate);
 
+    std::cout << std::endl;
     while(!cmd.isEmpty())
     {
         try {
@@ -62,6 +63,7 @@ protected:
     cmd.add(cmd_move);
     cmd.add(cmd_rotate);
 
+    std::cout << std::endl;
     while(!cmd.isEmpty())
     {
         try {
