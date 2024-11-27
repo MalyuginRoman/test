@@ -7,6 +7,14 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/extensions/HelperMacros.h>
 
+#include "object.h"
+#include "CommandQueue.h"
+#include "CommandMove.h"
+#include "CommandRotate.h"
+#include "CommandLoger.h"
+#include "CommandRepeat.h"
+#include "ExceptionHandler.h"
+
 class test_exception : public CPPUNIT_NS::TestCase
 {
 CPPUNIT_TEST_SUITE(test_exception);
@@ -18,9 +26,30 @@ void setUp(void) {}
 void tearDown(void){}
 
 protected:
+// Реализовать Команду, которая записывает информацию о выброшенном исключении в лог.
   void test1(void)
 {
-  CPPUNIT_ASSERT(0 < 1);
+    CommandQueue cmd;
+    CommandMove *cmd_move = new CommandMove;
+    CommandRotate *cmd_rotate = new CommandRotate;
+    CommandLoger *cmd_loger = new CommandLoger;
+    std::exception ex;
+    ExceptionHandler* handler = new ExceptionHandler(0, ex);
+
+    cmd.add(cmd_move);
+    cmd.add(cmd_rotate);
+
+    while(!cmd.isEmpty())
+    {
+        try {
+            cmd.front()->execute();
+        } catch( std::exception ex) {
+            cmd_loger->execute(cmd.front()->setStr());
+        }
+        cmd.del();
+    }
+    std::cout << std::endl;
+  //CPPUNIT_ASSERT(0 < 1);
 }
 };
 
