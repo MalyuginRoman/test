@@ -7,7 +7,6 @@
 #include <cppunit/extensions/TestFactoryRegistry.h>
 #include <cppunit/extensions/HelperMacros.h>
 
-#include "object.h"
 #include "CommandQueue.h"
 #include "CommandMove.h"
 #include "CommandRotate.h"
