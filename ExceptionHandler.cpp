@@ -54,5 +54,5 @@ void ExceptionHandler::executeLogerAfter(CommandQueue* cmd, std::exception ex)
 void ExceptionHandler::executeRepeatOnce(CommandQueue* cmd, std::exception ex)
 {
     CommandRepeat *cmd_repeat = new CommandRepeat;
-    cmd->add(cmd_loger);
+    cmd->add(cmd_repeat );
 }
