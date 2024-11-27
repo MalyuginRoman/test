@@ -75,10 +75,28 @@ protected:
     }
     std::cout << std::endl;
 }
-// 
+// Реализовать Команду, которая повторяет Команду, выбросившую исключение.
   void test3(void)
 {
-    CPPUNIT_ASSERT(0 < 1);
+    CommandQueue cmd;
+    CommandMove *cmd_move = new CommandMove;
+    CommandRotate *cmd_rotate = new CommandRotate;
+    CommandRepeat *cmd_repeat = new CommandRepeat;
+
+    cmd.add(cmd_move);
+    cmd.add(cmd_rotate);
+
+    std::cout << std::endl;
+    while(!cmd.isEmpty())
+    {
+        try {
+            cmd.front()->execute();
+        } catch( std::exception ex) {
+            cmd_repeat->execute();
+        }
+        cmd.del();
+    }
+    std::cout << std::endl;
 }
 // 
   void test4(void)
