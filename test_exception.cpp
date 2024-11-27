@@ -21,6 +21,7 @@ CPPUNIT_TEST_SUITE(test_exception);
   CPPUNIT_TEST(test2);
   CPPUNIT_TEST(test3);
   CPPUNIT_TEST(test4);
+  CPPUNIT_TEST(test5);
 CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -119,6 +120,28 @@ protected:
             handler->executeRepeatOnce(&cmd, ex);
         }
         cmd.del();
+    }
+    std::cout << std::endl;
+}
+// Реализовать обработчик исключения: при первом выбросе исключения повторить команду, при повторном выбросе исключения записать информацию в лог.
+  void test5(void)
+{
+    CommandQueue cmd;
+    CommandMove *cmd_move = new CommandMove;
+    CommandRotate *cmd_rotate = new CommandRotate;
+    std::exception ex;
+    ExceptionHandler* handler = new ExceptionHandler(0, ex);
+
+    cmd.add(cmd_move);
+    cmd.add(cmd_rotate);
+
+    while(!cmd.isEmpty())
+    {
+        try {
+            cmd.front()->execute();
+        } catch( std::exception ex) {
+            handler->executeRepeat(handler, &cmd, cmd.front(), ex);
+        }
     }
     std::cout << std::endl;
 }
