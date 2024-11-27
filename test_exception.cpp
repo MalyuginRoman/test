@@ -18,6 +18,9 @@ class test_exception : public CPPUNIT_NS::TestCase
 {
 CPPUNIT_TEST_SUITE(test_exception);
   CPPUNIT_TEST(test1);
+  CPPUNIT_TEST(test2);
+  CPPUNIT_TEST(test3);
+  CPPUNIT_TEST(test4);
 CPPUNIT_TEST_SUITE_END();
 
 public:
@@ -48,7 +51,40 @@ protected:
         cmd.del();
     }
     std::cout << std::endl;
-  //CPPUNIT_ASSERT(0 < 1);
+}
+// Реализовать обработчик исключения, который ставит Команду, пишущую в лог в очередь Команд.
+  void test2(void)
+{
+    CommandQueue cmd;
+    CommandMove *cmd_move = new CommandMove;
+    CommandRotate *cmd_rotate = new CommandRotate;
+    CommandLoger *cmd_loger = new CommandLoger;
+    std::exception ex;
+    ExceptionHandler* handler = new ExceptionHandler(0, ex);
+
+    cmd.add(cmd_move);
+    cmd.add(cmd_rotate);
+
+    while(!cmd.isEmpty())
+    {
+        try {
+            cmd.front()->execute();
+        } catch( std::exception ex) {
+            cmd_loger->execute(cmd.front());
+        }
+        cmd.del();
+    }
+    std::cout << std::endl;
+}
+// 
+  void test3(void)
+{
+    CPPUNIT_ASSERT(0 < 1);
+}
+// 
+  void test4(void)
+{
+    CPPUNIT_ASSERT(0 < 1);
 }
 };
 
