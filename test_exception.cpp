@@ -43,7 +43,7 @@ protected:
         try {
             cmd.front()->execute();
         } catch( std::exception ex) {
-            cmd_loger->execute(cmd.front()->setStr());
+            cmd_loger->execute(cmd.front());
         }
         cmd.del();
     }
