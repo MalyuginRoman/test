@@ -116,7 +116,7 @@ protected:
         try {
             cmd.front()->execute();
         } catch( std::exception ex) {
-            handler->executeRepeatOnce(&cmd, cmd.front(), ex);
+            handler->executeRepeatOnce(&cmd, ex);
         }
         cmd.del();
     }
