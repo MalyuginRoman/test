@@ -1,5 +1,6 @@
 #include "ExceptionHandler.h"
 #include "CommandLoger.h"
+#include "CommandRepeat.h"
 
 class ExceptionHandlerP
 {
