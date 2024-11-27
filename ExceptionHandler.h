@@ -13,6 +13,7 @@ public:
     std::exception ex() const;
 
     void executeWrite(CommandQueue* cmd, ICommand* com, std::exception ex);
+    void executeLogerAfter(CommandQueue* cmd, ICommand* com, std::exception ex)
     void executeRepeat(ExceptionHandler* handler, CommandQueue* cmd, ICommand* com, std::exception ex);
 private:
     class ExceptionHandlerP* imp;
