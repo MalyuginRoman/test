@@ -15,7 +15,7 @@ public:
     void executeWrite(CommandQueue* cmd, ICommand* com, std::exception ex);
     void executeLogerAfter(CommandQueue* cmd, std::exception ex);
     void executeRepeat(ExceptionHandler* handler, CommandQueue* cmd, ICommand* com, std::exception ex);
-    void executeRepeatOnce(CommandQueue* cmd, ICommand* com, std::exception ex);
+    void executeRepeatOnce(CommandQueue* cmd, std::exception ex);
 private:
     class ExceptionHandlerP* imp;
 };
